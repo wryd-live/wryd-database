@@ -1,5 +1,5 @@
 # wryd-database
-Database Files for WRYD
+Database Files for WRYD Server
 
 
 ## Steps
