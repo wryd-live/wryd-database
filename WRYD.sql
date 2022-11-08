@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `wryd` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `wryd`;
--- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
 --
 -- Host: localhost    Database: wryd
 -- ------------------------------------------------------
--- Server version	8.0.28
+-- Server version	8.0.31
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,6 +16,22 @@ USE `wryd`;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `forgot`
+--
+
+DROP TABLE IF EXISTS `forgot`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `forgot` (
+  `userid` int NOT NULL,
+  `forgetkey` varchar(256) NOT NULL,
+  `time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`userid`),
+  CONSTRAINT `forgot_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `friends`
@@ -38,15 +54,6 @@ CREATE TABLE `friends` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `friends`
---
-
-LOCK TABLES `friends` WRITE;
-/*!40000 ALTER TABLE `friends` DISABLE KEYS */;
-/*!40000 ALTER TABLE `friends` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `organization`
 --
 
@@ -65,14 +72,44 @@ CREATE TABLE `organization` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `organization`
+-- Table structure for table `request_incoming`
 --
 
-LOCK TABLES `organization` WRITE;
-/*!40000 ALTER TABLE `organization` DISABLE KEYS */;
-INSERT INTO `organization` VALUES (1,'iiitdwd','Indian Institute of Information Technology Dharwad','iiitdwd.ac.in'),(2,'iitdwd','Indian Institute of Technology Dharwad','iitdwd.ac.in');
-/*!40000 ALTER TABLE `organization` ENABLE KEYS */;
-UNLOCK TABLES;
+DROP TABLE IF EXISTS `request_incoming`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `request_incoming` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `first` int NOT NULL,
+  `second` int NOT NULL,
+  `time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `first` (`first`),
+  KEY `second` (`second`),
+  CONSTRAINT `request_incoming_ibfk_1` FOREIGN KEY (`first`) REFERENCES `user` (`id`),
+  CONSTRAINT `request_incoming_ibfk_2` FOREIGN KEY (`second`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `request_outgoing`
+--
+
+DROP TABLE IF EXISTS `request_outgoing`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `request_outgoing` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `first` int NOT NULL,
+  `second` int NOT NULL,
+  `time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `first` (`first`),
+  KEY `second` (`second`),
+  CONSTRAINT `request_outgoing_ibfk_1` FOREIGN KEY (`first`) REFERENCES `user` (`id`),
+  CONSTRAINT `request_outgoing_ibfk_2` FOREIGN KEY (`second`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `user`
@@ -87,23 +124,15 @@ CREATE TABLE `user` (
   `email` varchar(60) NOT NULL,
   `password` varchar(60) NOT NULL,
   `organization` int NOT NULL,
-  `verified` tinyint NOT NULL,
-  `verificaction_key` varchar(256) DEFAULT NULL,
+  `verified` tinyint NOT NULL DEFAULT '0',
+  `verification_key` varchar(256) DEFAULT NULL,
+  `imageurl` varchar(1024) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email_UNIQUE` (`email`),
   KEY `organization_idx` (`organization`) /*!80000 INVISIBLE */,
   CONSTRAINT `organization` FOREIGN KEY (`organization`) REFERENCES `organization` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `user`
---
-
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -114,4 +143,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-07 14:28:06
+-- Dump completed on 2022-11-08 12:05:56
