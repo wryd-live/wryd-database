@@ -1,6 +1,5 @@
-INSERT INTO `wryd`.`user` (`id`, `name`, `email`, `password`, `organization`, `verified`, `verificaction_key`) VALUES ('1', 'Shubh', '20bcs121@iiitdwd.ac.in', 'shhg', '1', '1', '1234');
-INSERT INTO `wryd`.`user` (`id`, `name`, `email`, `password`, `organization`, `verified`, `verificaction_key`) VALUES ('2', 'Yuvraj', '20bcs141@iiitdwd.ac.in', 'dewg', '1', '1', '1546');
-INSERT INTO `wryd`.`user` (`id`, `name`, `email`, `password`, `organization`, `verified`, `verificaction_key`) VALUES ('3', 'Siddhant', '20bcs123@iiitdwd.ac.in', 'hdyd', '1', '1', '1562');
-INSERT INTO `wryd`.`user` (`id`, `name`, `email`, `password`, `organization`, `verified`, `verificaction_key`) VALUES ('4 ', 'Ram', '20bec125', 'shyq', '2', '1', '5789');
-INSERT INTO `wryd`.`user` (`id`, `name`, `email`, `password`, `organization`, `verified`, `verificaction_key`) VALUES ('5', 'Shyam', '19bcs065', 'gdtw', '3', '1', '8964');
+INSERT INTO `wryd`.`user` (`name`, `email`, `password`, `organization`, `verified`, `verification_key`, `imageurl`) VALUES ('Shubh', '20bcs121@iiitdwd.ac.in', 'gfchsnd', '6', '1', 'bchsbchs', 'cbhvchwwi');
+INSERT INTO `wryd`.`user` (`name`, `email`, `password`, `organization`, `verified`, `verification_key`, `imageurl`) VALUES ('Siddhant', '20bcs123@iiitdwd.ac.in', 'sdbuvdyiw', '6', '1', 'bhjvhg', 'vhggh');
+INSERT INTO `wryd`.`user` (`name`, `email`, `password`, `organization`, `verified`, `verification_key`, `imageurl`) VALUES ('Yuvraj', '20bcs141@iiitdwd.ac.in', 'bdhvw', '7', '1', 'bhbjh', 'vhjvj');
+INSERT INTO `wryd`.`user` (`name`, `email`, `password`, `organization`, `verified`, `verification_key`, `imageurl`) VALUES ('Anand', '20bec065@iiitdwd.ac.in', 'bfvtrydu', '8', '1', 'vgvh', 'chcj');
 
