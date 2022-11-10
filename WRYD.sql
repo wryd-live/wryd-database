@@ -34,6 +34,15 @@ CREATE TABLE `forgot` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `forgot`
+--
+
+LOCK TABLES `forgot` WRITE;
+/*!40000 ALTER TABLE `forgot` DISABLE KEYS */;
+/*!40000 ALTER TABLE `forgot` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `friends`
 --
 
@@ -54,6 +63,45 @@ CREATE TABLE `friends` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `friends`
+--
+
+LOCK TABLES `friends` WRITE;
+/*!40000 ALTER TABLE `friends` DISABLE KEYS */;
+/*!40000 ALTER TABLE `friends` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `notification`
+--
+
+DROP TABLE IF EXISTS `notification`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `notification` (
+  `notificationid` int NOT NULL AUTO_INCREMENT,
+  `userid` int NOT NULL,
+  `type` varchar(45) NOT NULL,
+  `personid` int NOT NULL,
+  `time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`notificationid`),
+  KEY `userid` (`userid`),
+  KEY `personid` (`personid`),
+  CONSTRAINT `notification_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `user` (`id`),
+  CONSTRAINT `notification_ibfk_2` FOREIGN KEY (`personid`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `notification`
+--
+
+LOCK TABLES `notification` WRITE;
+/*!40000 ALTER TABLE `notification` DISABLE KEYS */;
+/*!40000 ALTER TABLE `notification` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `organization`
 --
 
@@ -68,8 +116,18 @@ CREATE TABLE `organization` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`),
   UNIQUE KEY `domain_UNIQUE` (`domain`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `organization`
+--
+
+LOCK TABLES `organization` WRITE;
+/*!40000 ALTER TABLE `organization` DISABLE KEYS */;
+INSERT INTO `organization` VALUES (1,'iiitdwd','Indian Institute of Information Technology Dharwad','iiitdwd.ac.in'),(3,'iiithyd','Indian Institute of Information Tehcnology Hyderabad','iiit.ac.in'),(7,'iiitb','Indian Institute of Information Tehcnology Bangalore','iiitb.ac.in'),(10,'iiitd','Indian Institute of Information Tehcnology Delhi','iiitd.ac.in'),(11,'iiitp','Indian Institute of Information Tehcnology Pilani','iiitp.ac.in');
+/*!40000 ALTER TABLE `organization` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `request_incoming`
@@ -92,6 +150,15 @@ CREATE TABLE `request_incoming` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `request_incoming`
+--
+
+LOCK TABLES `request_incoming` WRITE;
+/*!40000 ALTER TABLE `request_incoming` DISABLE KEYS */;
+/*!40000 ALTER TABLE `request_incoming` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `request_outgoing`
 --
 
@@ -110,6 +177,15 @@ CREATE TABLE `request_outgoing` (
   CONSTRAINT `request_outgoing_ibfk_2` FOREIGN KEY (`second`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `request_outgoing`
+--
+
+LOCK TABLES `request_outgoing` WRITE;
+/*!40000 ALTER TABLE `request_outgoing` DISABLE KEYS */;
+/*!40000 ALTER TABLE `request_outgoing` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `user`
@@ -133,6 +209,15 @@ CREATE TABLE `user` (
   CONSTRAINT `organization` FOREIGN KEY (`organization`) REFERENCES `organization` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -143,4 +228,4 @@ CREATE TABLE `user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-08 12:05:56
+-- Dump completed on 2022-11-10 19:57:25
